@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -22,9 +23,38 @@ namespace PlatformGame
         int force = 8;
         int score = 0;
 
+        public string platformImagePath = Path.GetDirectoryName(Application.ExecutablePath) + "\\platform1.png";
+        public string backgroundImagePath = Path.GetDirectoryName(Application.ExecutablePath) + "\\background1.png";
+        public string zombieImagePath = Path.GetDirectoryName(Application.ExecutablePath) + "\\zombie.png";
+        public string brainImagePath = Path.GetDirectoryName(Application.ExecutablePath) + "\\brain.png";
+
         public Form1()
         {
             InitializeComponent();
+
+            Image platformImage = Image.FromFile(platformImagePath);
+            Image zombieImage = Image.FromFile(zombieImagePath);
+            Image background1Image = Image.FromFile(backgroundImagePath);
+            Image brainImage = Image.FromFile(brainImagePath);
+
+
+            platformBottom.Image = platformImage;
+            platform1.Image = platformImage;
+            platform2.Image = platformImage;
+            platform3.Image = platformImage;
+            platform4.Image = platformImage;
+            platform5.Image = platformImage;
+            platform6.Image = platformImage;
+
+            BackgroundImage = background1Image;
+
+            brain1.Image = brainImage;
+            brain2.Image = brainImage;
+            brain3.Image = brainImage;
+            brain4.Image = brainImage;
+            brain5.Image = brainImage;
+
+            player.Image = zombieImage;
         }
 
         private void keyisdown(object sender, KeyEventArgs e)
@@ -100,7 +130,7 @@ namespace PlatformGame
                     }
                 }
 
-                if (x is PictureBox && x.Tag == "coin")
+                if (x is PictureBox && x.Tag == "brain")
                 {
                     if (player.Bounds.IntersectsWith(x.Bounds) && !jumping)
                     {
